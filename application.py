@@ -79,7 +79,7 @@ def main() -> None:
         steam_user = json_str["steam_user"]
         steam_password = json_str["steam_password"]
         target_profiles = json_str["target_profile_urls"]
-        comments_to_make = json_str["comment_to_make"]
+        comments_to_make = json_str["comments_to_make"]
 
     perform_login()
     make_comments()
