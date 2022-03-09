@@ -1,4 +1,3 @@
-import json
 import time
 
 from selenium import webdriver
@@ -74,20 +73,25 @@ def make_comments() -> None:
                 exit(-1)
 
 
+def release() -> None:
+    global steam_user, steam_password, target_profiles, comments_to_make, driver
+
+    steam_user = ""
+    steam_password = ""
+    target_profiles = []
+    comments_to_make = []
+    driver.quit()
+
+
 def main() -> None:
     global steam_user, steam_password, target_profiles, comments_to_make
 
-    """ # asks the user to input the required info
-    print("Loading config.json")
-    with open("config.json", "r") as file:
-        json_str = json.load(file)
-        steam_user = json_str["steam_user"]
-        steam_password = json_str["steam_password"]
-        target_profiles = json_str["target_profile_urls"]
-        comments_to_make = json_str["comments_to_make"] """
+    while True:
+        perform_login()
+        make_comments()
+        release()
 
-    perform_login()
-    make_comments()
+        time.sleep(60*60*2)
 
 
 if __name__ == "__main__":
