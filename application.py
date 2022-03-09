@@ -1,16 +1,21 @@
 import json
 import time
-from tkinter.tix import DirTree
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-steam_user = ""
-steam_password = ""
-target_profiles = []
-comments_to_make = []
+steam_user = "wilgot8"
+steam_password = "Password123x!"
+target_profiles = [
+    "https://steamcommunity.com/profiles/76561199250407823",
+    "https://steamcommunity.com/id/Blasxhemy"
+]
+comments_to_make = [
+    "first comment",
+    "second comment"
+]
 
 
 driver : webdriver.Chrome = None
@@ -72,14 +77,14 @@ def make_comments() -> None:
 def main() -> None:
     global steam_user, steam_password, target_profiles, comments_to_make
 
-    # asks the user to input the required info
+    """ # asks the user to input the required info
     print("Loading config.json")
     with open("config.json", "r") as file:
         json_str = json.load(file)
         steam_user = json_str["steam_user"]
         steam_password = json_str["steam_password"]
         target_profiles = json_str["target_profile_urls"]
-        comments_to_make = json_str["comments_to_make"]
+        comments_to_make = json_str["comments_to_make"] """
 
     perform_login()
     make_comments()
