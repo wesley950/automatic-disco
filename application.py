@@ -24,27 +24,28 @@ def perform_login() -> None:
     global driver
 
     # creates the chrome driver instance and navigate to the login page
-    login_page_url = "https://steamcommunity.com/login/home"
-    driver = webdriver.Chrome(executable_path=".\\chromedriver.exe")
-    driver.maximize_window()
-    driver.get(login_page_url)
+    if driver == None:
+        login_page_url = "https://steamcommunity.com/login/home"
+        driver = webdriver.Chrome(executable_path=".\\chromedriver.exe")
+        driver.maximize_window()
+        driver.get(login_page_url)
 
-    # find the input fields, submit info and click login
-    login_field = driver.find_element(By.ID, "input_username")
-    password_field = driver.find_element(By.ID, "input_password")
-    submit_btn = driver.find_element(By.CLASS_NAME, "btn_blue_steamui")
+        # find the input fields, submit info and click login
+        login_field = driver.find_element(By.ID, "input_username")
+        password_field = driver.find_element(By.ID, "input_password")
+        submit_btn = driver.find_element(By.CLASS_NAME, "btn_blue_steamui")
 
-    login_field.send_keys(steam_user)
-    password_field.send_keys(steam_password)
-    submit_btn.click()
+        login_field.send_keys(steam_user)
+        password_field.send_keys(steam_password)
+        submit_btn.click()
 
-    # let the user input the steam guard code whilst we are waiting for
-    # the indicative element to be visible
-    try:
-        WebDriverWait(driver, 10000).until(EC.presence_of_element_located((By.CLASS_NAME, "actual_persona_name")))
-    except:
-        print("The program could not continue because you took too long to input the Steam Guard code.")
-        exit(-3)
+        # let the user input the steam guard code whilst we are waiting for
+        # the indicative element to be visible
+        try:
+            WebDriverWait(driver, 10000).until(EC.presence_of_element_located((By.CLASS_NAME, "actual_persona_name")))
+        except:
+            print("The program could not continue because you took too long to input the Steam Guard code.")
+            exit(-3)
 
 
 def make_comments() -> None:
@@ -80,7 +81,7 @@ def release() -> None:
     steam_password = ""
     target_profiles = []
     comments_to_make = []
-    driver.quit()
+    #driver.quit()
 
 
 def main() -> None:
